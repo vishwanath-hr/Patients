@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatientsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Forename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="HomeNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="WorkNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="PatientsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <FunctionImport Name="GetAllPatients" ReturnType="Collection(PatientsModel.GetAllPatients_Result)" />
+    <FunctionImport Name="GetPatientsById" ReturnType="Collection(PatientsModel.GetPatientsById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPatients" ReturnType="Collection(Decimal)">
+      <Parameter Name="Forename" Mode="In" Type="String" />
+      <Parameter Name="Surname" Mode="In" Type="String" />
+      <Parameter Name="DateofBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="Gender" Mode="In" Type="String" />
+      <Parameter Name="HomeNumber" Mode="In" Type="String" />
+      <Parameter Name="WorkNumber" Mode="In" Type="String" />
+      <Parameter Name="MobileNumber" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetAllPatients_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Forename" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Surname" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DateofBirth" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="HomeNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="WorkNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="GetPatientsById_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Forename" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Surname" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DateofBirth" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="HomeNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="WorkNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="15" />
+  </ComplexType>
+</Schema>
